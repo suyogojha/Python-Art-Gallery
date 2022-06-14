@@ -1,0 +1,7 @@
+{% if user.is_authenticated %}
+<p>{{ user.firstname }} </p>
+<a href="accounts/logout">logout</a>
+{% else %}
+<!-- <login registe -->
+<h1>Login kar phele</h1>
+{% endif %}

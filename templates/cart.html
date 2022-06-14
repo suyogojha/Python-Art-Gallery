@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Your Cart </h1>
+
+<style>
+    .back-class {
+        background-color: aliceblue;
+        margin: 0 auto;
+        margin-top: 50px;
+        padding: 20px;
+    }
+
+    h3 {
+        color: seagreen;
+    }
+</style>
+
+{% for cart,art in con %}
+
+<form action="order/{{ art.id }}" method="POST">
+    {% csrf_token %}
+<div class="card card-layout back-class" style="width: 50rem;">
+    <img class="card-img-top" src="{{ art.image.url }}" style="width:100%"></img>
+    <h3>price = {{ art.price}}</h3>
+    <h3>date = {{ cart.added_date }}</h3>
+    {% if art.instock == True %}
+    <input class="btn btn-info btn-sm" type = 'Submit' name='submit' value='ORDER' style="width: 460px "> 
+    {% else %}
+    <h1 style="color: red;"> out of stock</h1>
+    {% endif %}
+</form>
+    {% if art.instock == True %}
+    <a href="remove/{{ art.id }}">
+        <button type="button" class="btn btn-warning" style="width: 460px; margin-top: 10px;">
+            REMOVE FROM CART
+        </button>
+    </a>
+    {% endif %}
+</div>
+</div>
+</div>
+
+
+{% endfor %}
+
+
+{% endblock %}

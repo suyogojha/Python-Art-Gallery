@@ -1,0 +1,38 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+  .back-changes {
+    background-color: aliceblue;
+  }
+  
+</style>
+
+
+<title>Category</title>
+
+<style>
+    .back-class {
+        background-color: aliceblue;
+        margin: 0 auto;
+        margin-top: 50px;
+        padding: 20px;
+    }
+
+    h3 {
+        color: seagreen;
+    }
+</style>
+
+{% for art in arts %}
+
+<div class="card card-layout back-class" style="width: 50rem;">
+    <img class="card-img-top" src="{{ art.artid.image.url }}" style="width:100%"></img>
+    <h3>price = {{  art.artid.price}}</h3>
+</div>
+
+{% endfor %}
+
+{% endblock %}

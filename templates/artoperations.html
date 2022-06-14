@@ -1,0 +1,41 @@
+<style>
+    .card-layout {
+        width: 80%;
+        margin: 0 auto;
+        margin-top: 50px;
+        padding: 20px;
+        background: #ffffff;
+    }
+</style>
+
+<form action="upload" method="post">
+    {% csrf_token %}
+    <input type="text" name="art_name" placeholder="Art name"><br>
+    <input list="browsers" name="artist_name" placeholder="Artist name">
+    <datalist id="browsers">
+        {% for kalakar in artist %}
+        <option value=" {{kalakar.id}} {{kalakar.artist_name}} ">
+        {% endfor %}
+    </datalist><br>
+    <input type="number" name="price" placeholder="price"><br>
+    <input type="text" name="description" placeholder="description"><br>
+    <input type="file" name="image"><br>
+    <input type="submit">
+</form>
+
+{% for item in art %}
+<div class="card card-layout " style="width: 50rem;">
+    <img class="card-img-top" src="{{ item.image.url }}" style="width:100%"></img>
+    <h1 class="text-danger">
+        {{ item.art_name}}
+    </h1>
+    <h1 class="text-danger">
+        {% if item.instock == True %}
+        <h1 style="color: green;"> Available </h1>
+        {% else %}
+        <h1 style="color: red;"> out of stock </h1>
+        {% endif %}
+
+    </h1>
+</div>
+{% endfor %}
